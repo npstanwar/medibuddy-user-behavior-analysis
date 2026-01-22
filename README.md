@@ -1,4 +1,7 @@
 # Insurance Claim Prediction & Risk Analysis (MediBuddy Capstone)
+## Notebook
+Interactive version:  
+https://nbviewer.org/github/npstanwar/medibuddy-user-behavior-analysis/blob/temp-fix/MediBuddy_Capstone_Project_V1.0.ipynb
 
 End-to-end machine learning project to predict healthcare insurance claim amounts and identify key risk drivers for data-driven premium pricing.
 
@@ -124,8 +127,5 @@ Negligible impact:
 
 ---
 
-## Notebook
 
-Interactive version:  
-(link will be added here)
 
