@@ -1,131 +1,265 @@
-# Insurance Claim Prediction & Risk Analysis (MediBuddy Capstone)
-## Notebook
-Interactive version:  
-https://nbviewer.org/github/npstanwar/medibuddy-user-behavior-analysis/blob/temp-fix/MediBuddy_Capstone_Project_V1.0.ipynb
+# Healthcare Insurance Risk Modelling
 
-End-to-end machine learning project to predict healthcare insurance claim amounts and identify key risk drivers for data-driven premium pricing.
+An end-to-end Machine Learning project that predicts healthcare insurance charges using demographic and lifestyle information. The project applies Exploratory Data Analysis (EDA), data preprocessing, feature engineering, multiple regression models, model evaluation, and business interpretation to support data-driven insurance premium estimation.
 
 ---
 
-## Overview
+##  Project Overview
 
-This project analyzes healthcare insurance data and builds regression models to predict claim amounts based on demographic and medical factors.  
-The goal is to support automated premium estimation and insurance risk assessment.
+Healthcare insurance providers need accurate premium estimation to reduce financial risk while offering competitive pricing. This project develops and compares multiple machine learning regression models to predict insurance charges and identify the key factors influencing insurance costs.
 
-Key tasks:
-- Data merging and cleaning  
-- Exploratory data analysis  
-- Feature engineering and preprocessing pipelines  
-- Model training and comparison  
-- Business insight generation  
+The final model provides accurate premium predictions and actionable business recommendations for insurance companies.
 
 ---
 
-## Dataset
+##  Objectives
 
-Two datasets merged using **Policy Number**.
-
-**Personal Details**
-- Gender  
-- Region  
-- Number of children  
-- Smoking status  
-
-**Medical & Cost**
-- Age  
-- BMI  
-- Insurance charges (target)  
-
-- Total records: **1,338**  
-- Target variable: **Charges (INR)**  
+- Predict healthcare insurance charges accurately.
+- Analyze factors affecting insurance costs.
+- Compare multiple machine learning regression models.
+- Select the best-performing model.
+- Generate business insights and recommendations for premium pricing.
 
 ---
 
-## Exploratory Data Analysis
+##  Dataset Information
 
-Main observations:
-- Insurance charges are highly right-skewed with extreme outliers  
-- Smokers incur dramatically higher claim amounts  
-- Age and BMI strongly increase insurance cost  
-- Gender and region have negligible impact  
+The dataset contains customer demographic and health-related information.
 
-Visual analysis included:
-- Distributions of age, BMI, and charges  
-- Boxplots by smoker status, gender, region, and dependents  
-- Interaction plots (Age × Smoker, BMI × Smoker)  
-- Correlation heatmaps and interactive Plotly charts  
+### Features
 
----
-
-## Preprocessing & Feature Engineering
-
-- Merged datasets using policy number  
-- Removed identifiers and leakage-prone variables  
-- One-hot encoded categorical features  
-- Numerical scaling where required  
-- Built unified preprocessing + modeling pipelines using:
-  - `ColumnTransformer`  
-  - `Pipeline`  
-
-Train–test split: **80 / 20**
+| Feature | Description |
+|----------|-------------|
+| Age | Age of the insured person |
+| Sex | Male/Female |
+| BMI | Body Mass Index |
+| Children | Number of dependents |
+| Smoker | Smoking status |
+| Region | Residential region |
+| Charges | Insurance charges (Target Variable) |
 
 ---
 
-## Models & Performance
+#  Tech Stack
 
-| Model              | R²     | RMSE (INR) |
-|--------------------|--------|------------|
-| Linear Regression  | 0.784  | 5,796      |
-| Random Forest      | 0.864  | 4,594      |
-| Gradient Boosting  | **0.879** | **4,335** |
-
-**Final model selected:** Gradient Boosting Regressor
-
----
-
-## Feature Importance (Gradient Boosting)
-
-Primary risk drivers:
-- Smoking status → **~68%**  
-- BMI → **~19%**  
-- Age → **~12%**  
-- Children → ~1%  
-
-Negligible impact:
-- Gender  
-- Region  
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Jupyter Notebook
 
 ---
 
-## Business Insights
+#  Project Workflow
 
-- Smoking status is the dominant predictor of insurance cost  
-- BMI and age are strong medical risk indicators  
-- Gender and geographic region add little pricing value  
-- Number of dependents has minimal effect  
+```
+Dataset
+     │
+     ▼
+Exploratory Data Analysis
+     │
+     ▼
+Data Preprocessing
+     │
+     ▼
+Train-Test Split
+     │
+     ▼
+Pipeline + ColumnTransformer
+     │
+     ▼
+Model Training
+     │
+     ▼
+Model Evaluation
+     │
+     ▼
+Feature Importance
+     │
+     ▼
+Business Insights
+```
 
 ---
 
-## Recommendations
+#  Exploratory Data Analysis
 
-- Introduce significant smoker surcharges  
-- Apply BMI-based premium adjustments  
-- Increase premiums progressively with age  
-- Offer discounts to non-smokers with healthy BMI  
-- Avoid pricing based on gender or region  
-- Deploy Gradient Boosting for automated premium estimation  
+EDA was performed to understand relationships between variables and identify the major drivers of insurance cost.
 
----
+Analysis included:
 
-## Tools & Technologies
-
-- Python  
-- Pandas, NumPy  
-- Matplotlib, Seaborn, Plotly  
-- Scikit-learn  
-- Pipelines, ColumnTransformer, GridSearchCV  
+- Distribution of insurance charges
+- Age vs Charges
+- BMI vs Charges
+- Smokers vs Non-smokers
+- Region-wise comparison
+- Gender analysis
+- Children vs Charges
+- Correlation analysis
 
 ---
 
+#  Data Preprocessing
 
+The following preprocessing steps were applied:
 
+- Missing value verification
+- One-Hot Encoding
+- ColumnTransformer
+- Train-Test Split (80:20)
+- Scikit-learn Pipeline implementation
+
+---
+
+#  Machine Learning Models
+
+The following models were trained and evaluated.
+
+### 1. Linear Regression
+
+Baseline regression model used for comparison.
+
+---
+
+### 2. Random Forest Regressor
+
+Ensemble learning model capable of capturing non-linear relationships.
+
+---
+
+### 3. Gradient Boosting Regressor
+
+Boosting-based ensemble model providing the best predictive performance.
+
+---
+
+### 4. Hyperparameter Tuned Gradient Boosting
+
+GridSearchCV was used for hyperparameter optimization.
+
+---
+
+#  Model Performance
+
+| Model | R² Score | RMSE |
+|--------|---------:|------:|
+| Linear Regression | **0.784** | **5796** |
+| Random Forest | **0.864** | **4594** |
+| Gradient Boosting | **0.879** | **4335** |
+| Tuned Gradient Boosting | **0.878** | **4344** |
+
+---
+
+#  Final Model
+
+**Gradient Boosting Regressor**
+
+### Performance
+
+- **R² Score:** 0.879
+- **RMSE:** 4335
+
+Although GridSearchCV was performed, the tuned model did not improve performance on the test dataset. Therefore, the original Gradient Boosting model was selected as the final production model.
+
+---
+
+#  Feature Importance
+
+| Feature | Importance |
+|---------|-----------:|
+| Smoker | 67.7% |
+| BMI | 19.0% |
+| Age | 11.9% |
+| Children | <1% |
+| Gender | Negligible |
+| Region | Negligible |
+
+---
+
+#  Model Diagnostics
+
+Model validation included:
+
+- Actual vs Predicted Plot
+- Residual Distribution
+- Residual vs Predicted Plot
+
+These diagnostics indicate that the model produces accurate predictions with no significant systematic error patterns.
+
+---
+
+#  Business Insights
+
+- Smoking status is the strongest determinant of insurance cost.
+- BMI is the second most influential pricing factor.
+- Insurance charges increase steadily with age.
+- Number of dependents has minimal influence.
+- Gender has negligible impact on insurance cost.
+- Geographic region contributes very little to prediction accuracy.
+
+---
+
+#  Business Recommendations
+
+- Use smoking status as the primary premium pricing factor.
+- Incorporate BMI and age into pricing models.
+- Offer premium discounts to healthy non-smokers.
+- Avoid pricing decisions based primarily on gender or region.
+- Deploy Gradient Boosting for automated premium estimation.
+
+---
+
+#  Repository Structure
+
+```
+Healthcare-Insurance-Risk-Modelling/
+│
+├── Dataset/
+│
+├── Notebook/
+│   └── Healthcare_Insurance_Risk_Modelling.ipynb
+│
+├── Images/
+│
+├── Report/
+│   └── Healthcare_Insurance_Risk_Modelling_Professional_Report.pdf
+│
+├── README.md
+│
+└── requirements.txt
+```
+
+---
+
+#  Future Improvements
+
+- Deploy the model using Streamlit
+- Develop a premium prediction web application
+- Integrate SHAP for explainable AI
+- Train using larger healthcare datasets
+- Implement automated model monitoring
+
+---
+
+#  Report
+
+A detailed project report is included in the repository.
+
+```
+Report/
+└── Healthcare_Insurance_Risk_Modelling_Professional_Report.pdf
+```
+
+---
+
+#  Author
+
+**Nishant Pratap Singh**
+
+**GitHub:** https://github.com/npstanwar
+
+**LinkedIn:** https://www.linkedin.com/in/npstanwar/
+
+---
