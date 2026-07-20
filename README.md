@@ -224,7 +224,7 @@ Healthcare-Insurance-Risk-Modelling/
 ├── Images/
 │
 ├── Report/
-│   └── Healthcare_Insurance_Risk_Modelling_Professional_Report.pdf
+│   └── Healthcare_Insurance_Risk_Modelling_Report.pdf
 │
 ├── README.md
 │
@@ -249,7 +249,7 @@ A detailed project report is included in the repository.
 
 ```
 Report/
-└── Healthcare_Insurance_Risk_Modelling_Professional_Report.pdf
+└── Healthcare_Insurance_Risk_Modelling_Report.pdf
 ```
 
 ---
